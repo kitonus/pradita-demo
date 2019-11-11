@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+#server.port=8080
+#server.servlet.context-path: /rest
+  servlet:
+    context-path: /rest
+
+#Database
+#spring.datasource.url=jdbc:postgresql://192.168.90.17/training
+spring:
+  datasource:
+    #url: jdbc:postgresql://192.168.90.17/training\
+    url: jdbc:h2:~/pradita-demo
+
+#spring.datasource.username=jdt7
+    username: demo
+#spring.datasource.password=jdt7
+    password: demo
+#spring.jpa.generate-ddl=true
+  jpa:
+    generate-ddl: true
+#spring.jpa.hibernate.ddl-auto=update
+    hibernate:
+      ddl-auto: update
+#spring.jpa.show-sql=true
+    show-sql: true
+#spring.jpa.properties.hibernate.format_sql=true
+    properties:
+      hibernate.format_sql: true
+#spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+      hibernate.jdbc.lob.non_contextual_creation: true
+#    database: postgresql
+    database: h2
+
+
+
+
