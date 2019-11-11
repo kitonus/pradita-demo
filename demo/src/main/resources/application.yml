@@ -33,6 +33,9 @@ spring:
 #    database: postgresql
     database: h2
 
-
+  security:
+    user:
+      name: demo
+      password: password
 
 
