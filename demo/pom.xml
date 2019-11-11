@@ -28,6 +28,18 @@
 		    <artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- enable HTML page (web MVC) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>		
+		<!-- END - enable HTML page (web MVC) -->
+		
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
