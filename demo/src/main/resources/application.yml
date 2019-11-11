@@ -1,10 +1,15 @@
 server:
   port: 8080
+  servlet:
+    context-path: /rest
+  
+logging:
+  level:
+    org.springframework.security.web: debug
+    org.springframework.web: debug
 
 #server.port=8080
 #server.servlet.context-path: /rest
-  servlet:
-    context-path: /rest
 
 #Database
 #spring.datasource.url=jdbc:postgresql://192.168.90.17/training
@@ -37,5 +42,7 @@ spring:
     user:
       name: demo
       password: password
+      roles:
+      - USER
 
 
