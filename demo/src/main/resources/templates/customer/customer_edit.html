@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer List</title>
+</head>
+<body>
+<form action="#" th:action="@{/customer/page/save}" th:object="${cust}" method="post">
+<table>
+    <thead>
+        <tr>
+            <th colspan="2" th:text="${cust.email}">Edit Customer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td>Birth Day</td>
+            <td><input type="text" th:field="*{birthDate}"></td>
+        </tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>

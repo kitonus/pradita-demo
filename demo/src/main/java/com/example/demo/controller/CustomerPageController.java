@@ -27,4 +27,11 @@ public class CustomerPageController{
 		model.addAttribute("list", service.getCustomerList(pageRequest).getCustomers().getContent());
 		return "customer/customer_list";
 	}
+	
+	@GetMapping("/edit")
+	public String detail(@RequestParam(name="email", defaultValue="", required=false) String email, 
+			Model model) {
+		model.addAttribute("cust", service.getCustomerDetail(email));
+		return "customer/customer_edit";
+	}
 }

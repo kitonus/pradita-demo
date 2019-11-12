@@ -18,7 +18,7 @@
             <td colspan="3">No Customers Available</td>
         </tr>
         <tr th:each="cust : ${list}">
-            <td><span th:text="${cust.name}">Name</span></td>
+            <td><a th:href="@{/customer/page/edit?email={email}(email=${cust.email})}" th:text="${cust.name}">Name</a></td>
             <td><span th:text="${cust.email}">Email</span></td>
             <td><span th:text="${cust.birthDate}">Birth Date</span></td>
         </tr>
