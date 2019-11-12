@@ -5,7 +5,7 @@ server:
   
 logging:
   level:
-    org.springframework.security.web: debug
+    org.springframework.security: debug
     org.springframework.web: debug
 
 #server.port=8080

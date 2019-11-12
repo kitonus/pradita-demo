@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class CustomerPageController{
 		return "customer/customer_edit";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String save(@ModelAttribute(name="cust") CustomerRequest cust,
 			BindingResult errors, Model model) {
