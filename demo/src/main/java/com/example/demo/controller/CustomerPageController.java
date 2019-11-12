@@ -45,11 +45,11 @@ public class CustomerPageController{
 	@PostMapping("/save")
 	public String save(@ModelAttribute(name="cust") CustomerRequest cust,
 			BindingResult errors, Model model) {
-		if (new Date().before(cust.getBirthDate())) {
+		if (cust.getBirthDate() == null || new Date().before(cust.getBirthDate())) {
 			errors.addError(new FieldError("cust", "birthDate", "Invalid birth day"));
 			return "customer/customer_edit";
 		}
 		service.updateCustomer(cust);
-		return list("", model);		
+		return "redirect:/customer/page";		
 	}
 }
