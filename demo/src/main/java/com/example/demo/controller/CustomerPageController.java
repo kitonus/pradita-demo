@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -7,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.CustomerRequest;
-import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 
 @Controller
@@ -41,14 +43,13 @@ public class CustomerPageController{
 	}
 	
 	@PostMapping("/save")
-	public String save(@ModelAttribute(name="cust") Customer cust,
+	public String save(@ModelAttribute(name="cust") CustomerRequest cust,
 			BindingResult errors, Model model) {
-		CustomerRequest request = new CustomerRequest();
-		request.setEmail(cust.getEmail());
-		request.setBirthDate(cust.getBirthDate());
-		request.setName(cust.getName());
-		request.setAddress(cust.getAddress());
-		service.updateCustomer(request);
+		if (new Date().before(cust.getBirthDate())) {
+			errors.addError(new FieldError("cust", "birthDate", "Invalid birth day"));
+			return "customer/customer_edit";
+		}
+		service.updateCustomer(cust);
 		return list("", model);		
 	}
 }

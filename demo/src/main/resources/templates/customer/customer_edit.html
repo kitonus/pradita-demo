@@ -24,7 +24,10 @@
         </tr>
         <tr>
             <td>Birth Day</td>
-            <td><input type="text" th:field="*{birthDate}"></td>
+            <td><input type="text" th:field="*{birthDate}"
+            th:value="${#dates.format(cust.birthDate, 'dd-MM-yyyy')}">
+            <span class="error" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span>
+            </td>
         </tr>
         <tr>
         	<td colspan="2"><input type="submit" value="save"></td>
