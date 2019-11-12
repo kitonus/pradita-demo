@@ -6,10 +6,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.domain.CustomerRequest;
+import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 
 @Controller
@@ -33,5 +38,17 @@ public class CustomerPageController{
 			Model model) {
 		model.addAttribute("cust", service.getCustomerDetail(email));
 		return "customer/customer_edit";
+	}
+	
+	@PostMapping("/save")
+	public String save(@ModelAttribute(name="cust") Customer cust,
+			BindingResult errors, Model model) {
+		CustomerRequest request = new CustomerRequest();
+		request.setEmail(cust.getEmail());
+		request.setBirthDate(cust.getBirthDate());
+		request.setName(cust.getName());
+		request.setAddress(cust.getAddress());
+		service.updateCustomer(request);
+		return list("", model);		
 	}
 }
